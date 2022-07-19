@@ -150,8 +150,8 @@
 
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-<!--        <el-button type="primary" @click="addData('pojoForm')">确 定</el-button>-->
-        <el-button type="primary" @click="pojo.id === null ? addData('pojoForm') : updateData('pojoForm')">确 定</el-button>
+        <el-button type="primary" @click="pojo.id === null ? addData('pojoForm') : updateData('pojoForm')">确 定
+        </el-button>
       </div>
 
     </el-dialog>
@@ -309,6 +309,7 @@ export default {
     },
     //提交新增数据
     addData(formName) {
+      console.log('触发新增');
       this.$refs[formName].validate(valid => {
         if (valid) {
           //提交
@@ -341,6 +342,7 @@ export default {
         // this.$nextTick 是一个异步事件 ，当渲染结束之后 他的回调函数才会执行
         //弹出窗口打开后，需要加载Dom,  表单没有渲染 不能清除  我们要等待加载完Dom 在调用 重置表单
         this.$refs['pojoForm'].resetFields()
+        this.pojo.id = null
       })
     }
   },

@@ -2,8 +2,8 @@ import request from '@/utils/request'
 
 export default {
     //获取会员列表数据
-    getList(){
-      return  request({
+    getList() {
+        return request({
             url: '/member/list',
             method: 'get'
         })
@@ -17,7 +17,7 @@ export default {
      * @param size 页面查询条数
      * @param searchMap 条件查询的条件值
      */
-    search(page, size, searchMap){
+    search(page, size, searchMap) {
         return request({
             url: `/member/list/search/${page}/${size}`,
             method: 'post',
@@ -29,18 +29,16 @@ export default {
     },
 
     //新增会员
-    add(pojo){
+    add(pojo) {
         return request({
             url: '/member',
             method: 'post',
-            data: {
-                pojo
-            }
+            data: pojo
         })
     },
 
     //通过id查询会员信息
-    getById(id){
+    getById(id) {
         return request({
             url: `/member/${id}`,
             method: 'get',
@@ -49,7 +47,7 @@ export default {
     },
 
     //更新数据
-    update(pojo){
+    update(pojo) {
         return request({
             url: `/member/${pojo.id}`,
             method: 'put',
@@ -58,7 +56,7 @@ export default {
     },
 
     //删除会员
-    deleteById(id){
+    deleteById(id) {
         return request({
             url: `/member/${id}`,
             method: 'delete'

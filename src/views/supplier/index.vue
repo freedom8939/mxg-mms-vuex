@@ -166,6 +166,7 @@ export default {
       this.dialogFormVisible = true
       this.$nextTick(() => {
         this.$refs['pojoForm'].resetFields()
+        this.pojo.id = null
       })
     },
     //提交新增表单

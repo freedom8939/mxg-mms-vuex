@@ -201,6 +201,7 @@ export default {
         // this.$nextTick()它是一个异步事件，当渲染结束 之后 ，它的回调函数才会被执行
         // 弹出窗口打开之后 ，需要加载Dom, 就需要花费一点时间，我们就应该等待它加载完dom之后，再进行调用resetFields方法，重置表单和清除样式
         this.$refs['pojoForm'].resetFields()
+        this.pojo.id=null
       })
     },
     // 提交新增数据

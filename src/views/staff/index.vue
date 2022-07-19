@@ -156,6 +156,7 @@ export default {
       this.dialogFormVisible = true
       this.$nextTick(() => {
         this.$refs['pojoForm'].resetFields()
+        this.pojo.id = null
       })
     },
     addData(formName){

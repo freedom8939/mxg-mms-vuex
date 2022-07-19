@@ -4,7 +4,7 @@ import {login, getUserInfo, logout} from "@/api/login"
 const user = {
     state: {
         token: getToken(),  //getToken()作为token初始值，解决刷新页面之后token为null问题
-        user: null
+        user: getUser()
     },
     mutations: {
         SET_TOKEN(state, token) {
@@ -13,6 +13,7 @@ const user = {
         },
         SET_USER(state, user) {
             state.user = user
+            setUser(user)
         }
     },
     actions: {
@@ -30,13 +31,27 @@ const user = {
             })
         },
         // 通过token获取用户信息
-        GetUserInfo({commit}, state) {
+        GetUserInfo({commit,state} ) {
            return  new Promise((resolve, reject) =>{
                 getUserInfo(state.token).then(response =>{
                     const respUser = response.data
                     commit('SET_USER', respUser.data)
                     resolve(respUser)
                 }).catch(error =>{
+                    reject(error)
+                })
+            })
+        },
+        //退出
+        Logout({commit,state}) {
+            return new Promise((resolve, reject)=>{
+                logout(state.token).then(response=>{
+                    const resp = response.data
+                    commit('SET_TOKEN', '')
+                    commit('SET_USER', null)
+                    removeToken()
+                    resolve(resp)
+                }).catch(error=>{
                     reject(error)
                 })
             })
